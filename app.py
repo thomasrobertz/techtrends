@@ -4,15 +4,14 @@ import sqlite3
 from pathlib import Path
 
 from flask import Flask, jsonify, json, render_template, request, url_for, redirect, flash
-#from werkzeug.exceptions import abort
 
 HTTP_STATUS_OK: int = 200
 HTTP_STATUS_NOT_FOUND: int = 404
 HTTP_STATUS_INTERNAL_ERROR: int = 500
-DATABASE_FILE = "database.db"
+DATABASE_FILE: str = "database.db"
 db_connection_count: int = 0
 
-PRODUCTION_MODE: bool = False
+PRODUCTION_MODE: bool = True
 
 logging.basicConfig(level = logging.DEBUG,
                     format = '%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
@@ -138,5 +137,6 @@ def metrics():
 # start the application on port 3111.
 if __name__ == "__main__":
    app.run(host='0.0.0.0', port='3111', debug= not PRODUCTION_MODE)
+   # Route STDOUT and STDERR to app logger
    sys.stdout.write = appLog.info
    sys.stderr.write = appLog.info
