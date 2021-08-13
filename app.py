@@ -1,17 +1,17 @@
 import sys
 import logging
 import sqlite3
-from pathlib import Path
+import os.path
 
 from flask import Flask, jsonify, json, render_template, request, url_for, redirect, flash
 
-HTTP_STATUS_OK: int = 200
-HTTP_STATUS_NOT_FOUND: int = 404
-HTTP_STATUS_INTERNAL_ERROR: int = 500
-DATABASE_FILE: str = "database.db"
-db_connection_count: int = 0
+HTTP_STATUS_OK = 200
+HTTP_STATUS_NOT_FOUND = 404
+HTTP_STATUS_INTERNAL_ERROR = 500
+DATABASE_FILE = "database.db"
+db_connection_count = 0
 
-PRODUCTION_MODE: bool = True
+PRODUCTION_MODE = True
 
 logging.basicConfig(level = logging.DEBUG,
                     format = '%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
@@ -50,12 +50,12 @@ def get_post_count():
 
 # Function to check whether the database file exists.
 def database_file_exists(pathToDatabaseFile):
-    return Path(pathToDatabaseFile).exists()
+    return os.path.isfile(pathToDatabaseFile)
 
 # Function to check whether the database has the given table.
 def database_has_table(tableName):
     connection = get_db_connection()
-    postsTable = connection.execute(f"SELECT name FROM sqlite_master WHERE type='table' AND name='{tableName}'").fetchone()
+    postsTable = connection.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='" + tableName + "'").fetchone()
     connection.close()
     return postsTable is not None
 
@@ -77,10 +77,10 @@ def index():
 def post(post_id):
     post = get_post(post_id)
     if post is None:
-      appLog.info(f"Post {post_id} not found - returning 404.")
+      appLog.info("Post " + str(post_id) + " not found - returning 404.")
       return render_template('404.html'), HTTP_STATUS_NOT_FOUND
     else:
-      appLog.info(f"Get post {post_id}.")
+      appLog.info("Get post " + str(post_id) + ".")
       return render_template('post.html', post=post)
 
 # Define the About Us page.
@@ -105,7 +105,7 @@ def create():
             connection.commit()
             connection.close()
 
-            appLog.info(f"New post with title '{title}' created.")
+            appLog.info("New post with title '" + title + "' created.")
             return redirect(url_for('index'))
 
     return render_template('create.html')

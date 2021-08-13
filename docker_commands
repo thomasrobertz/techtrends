@@ -1,0 +1,47 @@
+## Docker commands used to build the application 
+docker build -f Dockerfile -t techtrends:techtrends .
+
+## Docker commands used to run the application
+docker run -d -p 127.0.0.1:7111:3111/tcp techtrends:techtrends
+
+## Docker commands used to get the application logs
+docker logs 093
+
+## Logs from the container running the TechTrends application
+Init db and start app...
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+08-09 18:05 werkzeug     INFO      * Running on http://0.0.0.0:3111/ (Press CTRL+C to quit)
+08-09 18:05 werkzeug     INFO     172.17.0.1 - - [09/Aug/2021 18:05:30] "GET / HTTP/1.1" 200 -
+08-09 18:05 werkzeug     INFO     172.17.0.1 - - [09/Aug/2021 18:05:30] "GET /static/css/main.css HTTP/1.1" 200 -
+08-09 18:05 werkzeug     INFO     172.17.0.1 - - [09/Aug/2021 18:05:30] "GET /favicon.ico HTTP/1.1" 404 -
+08-09 18:05 app          INFO     Get post 1.
+08-09 18:05 werkzeug     INFO     172.17.0.1 - - [09/Aug/2021 18:05:32] "GET /1 HTTP/1.1" 200 -
+08-09 18:05 app          INFO     Get post 3.
+08-09 18:05 werkzeug     INFO     172.17.0.1 - - [09/Aug/2021 18:05:34] "GET /3 HTTP/1.1" 200 -
+08-09 18:08 app          INFO     Get post 2.
+08-09 18:08 werkzeug     INFO     172.17.0.1 - - [09/Aug/2021 18:08:27] "GET /2 HTTP/1.1" 200 -
+08-09 18:08 app          INFO     'About Us' page accessed.
+08-09 18:08 werkzeug     INFO     172.17.0.1 - - [09/Aug/2021 18:08:45] "GET /about HTTP/1.1" 200 -
+08-09 18:08 werkzeug     INFO     172.17.0.1 - - [09/Aug/2021 18:08:51] "GET /create HTTP/1.1" 200 -
+08-09 18:09 app          INFO     New post with title 'NEW POST CREATED' created.
+08-09 18:09 werkzeug     INFO     172.17.0.1 - - [09/Aug/2021 18:09:16] "POST /create HTTP/1.1" 302 -
+08-09 18:09 werkzeug     INFO     172.17.0.1 - - [09/Aug/2021 18:09:17] "GET / HTTP/1.1" 200 -
+08-09 18:09 werkzeug     INFO     172.17.0.1 - - [09/Aug/2021 18:09:56] "GET /healthz HTTP/1.1" 200 -
+08-09 18:10 werkzeug     INFO     172.17.0.1 - - [09/Aug/2021 18:10:17] "GET /metrics HTTP/1.1" 200 -
+08-09 18:10 app          INFO     healthz
+08-09 18:10 werkzeug     INFO     172.17.0.1 - - [09/Aug/2021 18:10:56] "GET /healthz HTTP/1.1" 200 -
+08-09 18:11 app          INFO     healthz
+08-09 18:11 werkzeug     INFO     172.17.0.1 - - [09/Aug/2021 18:11:38] "GET /healthz HTTP/1.1" 200 -
+08-09 18:15 werkzeug     INFO     172.17.0.1 - - [09/Aug/2021 18:15:21] "GET / HTTP/1.1" 200 -
+08-09 18:15 app          INFO     Get post 4.
+08-09 18:15 werkzeug     INFO     172.17.0.1 - - [09/Aug/2021 18:15:27] "GET /4 HTTP/1.1" 200 -
+08-09 18:15 werkzeug     INFO     172.17.0.1 - - [09/Aug/2021 18:15:48] "GET /create HTTP/1.1" 200 -
+08-09 18:16 app          INFO     New post with title 'test' created.
+08-09 18:16 werkzeug     INFO     172.17.0.1 - - [09/Aug/2021 18:16:23] "POST /create HTTP/1.1" 302 -
+08-09 18:16 werkzeug     INFO     172.17.0.1 - - [09/Aug/2021 18:16:24] "GET / HTTP/1.1" 200 -
+08-09 18:16 app          INFO     'About Us' page accessed.
+08-09 18:16 werkzeug     INFO     172.17.0.1 - - [09/Aug/2021 18:16:27] "GET /about HTTP/1.1" 200 -
