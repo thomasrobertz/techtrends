@@ -1,0 +1,9 @@
+apiVersion: v1
+name: techtrends
+description: deployment manifests parameterized with helm charts for the techtrends project
+keywords:
+- techtrends
+version: 1.0.0
+maintainers:
+- name: trobertz 
+  email: trobertz@xyz.com 
